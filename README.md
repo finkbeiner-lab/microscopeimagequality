@@ -28,10 +28,10 @@ After the virtualenv is set up, activate it.
 source ~/.virtualenvs/miq/bin/activate
 ```
 
-Install Python dependencies from the ```miq_requirements.txt``` file using pip
+Install Python dependencies from the ```requirements.txt``` file using pip
 
 ```
-pip install -r miq_requirements.txt
+pip install -r requirements.txt
 ```
 
 Configure your matplotlib backend. Locate the path to the active matplotlibrc through a Python shell.
