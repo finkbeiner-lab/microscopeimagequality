@@ -12,6 +12,58 @@ See the paper [PDF](http://rdcu.be/I5cE) for reference:
 
 Yang, S. J., Berndl, M., Ando, D. M., Barch, M., Narayanaswamy, A. , Christiansen, E., Hoyer, S., Roat, C., Hung, J., Rueden, C. T., Shankar, A., Finkbeiner, S., & and Nelson, P. (2018). Assessing microscope image focus quality with deep learning. BMC Bioinformatics, 19(1).
 
+Setting up a virtual environment
+--------------------------------
+Navigate to your home directory and create a hidden folder that will contain this (or other) virtualenvs. Create a virtualenv called ```miq``` with Python 2.7.
+
+```
+cd
+mkdir .virtualenvs
+virtualenv --python=/usr/bin/python ~/.virtualenvs/miq
+```
+
+After the virtualenv is set up, activate it.
+
+```
+source ~/.virtualenvs/miq/bin/activate
+```
+
+Install Python dependencies from the ```requirements.txt``` file using pip
+
+```
+pip install -r requirements.txt
+```
+
+Configure your matplotlib backend. Locate the path to the active matplotlibrc through a Python shell.
+
+```
+python
+>>> import matplotlib
+>>> matplotlib.matplotlib_fname()
+# /Users/user/.matplotlib/matplotlibrc
+```
+
+If you are installing this on a local machine:
+
+```
+echo 'backend : Agg' >> /path/to/matplotlibrc
+```
+
+If you are installing this on a remote machine (the compute nodes):
+
+```
+echo 'backend : TkAgg' >> /path/to/matplotlibrc
+```
+
+Re-activate the virtualenv
+
+```
+deactivate
+source ~/.virtualenvs/miq/bin/activate
+```
+
+Then continue with the installation as described below!
+
 Getting started
 -------------
 
