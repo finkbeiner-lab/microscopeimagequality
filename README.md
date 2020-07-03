@@ -14,7 +14,7 @@ Yang, S. J., Berndl, M., Ando, D. M., Barch, M., Narayanaswamy, A. , Christianse
 
 Setting up a virtual environment
 --------------------------------
-Clone the main branch of this repository
+Clone the main branch of this repository.
 
 ```
 git clone -b main https://github.com/finkbeiner-lab/microscopeimagequality.git
@@ -34,7 +34,7 @@ After the virtualenv is set up, activate it.
 source ~/.virtualenvs/miq/bin/activate
 ```
 
-Install Python dependencies from the ```requirements.txt``` file using pip
+Install Python dependencies from the ```requirements.txt``` file using pip.
 
 ```
 pip install -r requirements.txt
@@ -61,7 +61,7 @@ If you are installing this on a remote machine (the compute nodes):
 echo 'backend : TkAgg' >> /path/to/matplotlibrc
 ```
 
-Re-activate the virtualenv
+Re-activate the virtualenv.
 
 ```
 deactivate
@@ -73,7 +73,7 @@ Then continue with the installation as described below!
 Getting started
 -------------
 
-Clone the `main` branch of this repository
+Clone the `main` branch of this repository. You can skip this step if you already cloned the repository earlier.
 
 ```
 git clone -b main https://github.com/finkbeiner-lab/microscopeimagequality.git
