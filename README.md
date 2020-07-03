@@ -52,13 +52,13 @@ $ python
 If you are installing this on a local machine:
 
 ```
-echo 'backend : Agg' >> /path/to/matplotlibrc
+echo 'backend : TkAgg' >> /path/to/matplotlibrc
 ```
 
 If you are installing this on a remote machine (the compute nodes):
 
 ```
-echo 'backend : TkAgg' >> /path/to/matplotlibrc
+echo 'backend : Agg' >> /path/to/matplotlibrc
 ```
 
 Re-activate the virtualenv.
