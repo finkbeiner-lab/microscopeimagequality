@@ -14,6 +14,12 @@ Yang, S. J., Berndl, M., Ando, D. M., Barch, M., Narayanaswamy, A. , Christianse
 
 Setting up a virtual environment
 --------------------------------
+Clone the main branch of this repository
+
+```
+git clone -b main https://github.com/finkbeiner-lab/microscopeimagequality.git
+```
+
 Navigate to your home directory and create a hidden folder that will contain this (or other) virtualenvs. Create a virtualenv called ```miq``` with Python 2.7.
 
 ```
@@ -37,7 +43,7 @@ pip install -r requirements.txt
 Configure your matplotlib backend. Locate the path to the active matplotlibrc through a Python shell.
 
 ```
-python
+$ python
 >>> import matplotlib
 >>> matplotlib.matplotlib_fname()
 # /Users/user/.matplotlib/matplotlibrc
@@ -70,7 +76,7 @@ Getting started
 Clone the `main` branch of this repository
 
 ```
-git clone -b main https://github.com/google/microscopeimagequality.git
+git clone -b main https://github.com/finkbeiner-lab/microscopeimagequality.git
 ```
 
 Install the package:
