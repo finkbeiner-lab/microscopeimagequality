@@ -256,7 +256,7 @@ def save_masks_and_annotated_visualization(orig_name,
             (0, y_pad), (0, x_pad), (0, 0))
         im_padded = numpy.pad(im, pad_size, 'constant')
 
-        skimage.io.imsave(image_output_path, im_padded)
+        skimage.io.imsave(image_output_path, im_padded, dpi = (1200, 1200))
 
     orig_name_png = os.path.splitext(os.path.basename(orig_name))[0] + '.png'
     visualized_image_name = ('actual%g_pred%g_mean_certainty=%0.3f' +

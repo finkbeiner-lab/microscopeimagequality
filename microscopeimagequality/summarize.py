@@ -161,7 +161,7 @@ def plot_certainties(certainties, predictions, num_classes, save_path):
                      numpy.min(certainties[k1]),
                      numpy.mean(certainties[k1]), numpy.max(certainties[k1]))
     matplotlib.pyplot.subplots_adjust(hspace=0.05, wspace=0.05)
-    matplotlib.pyplot.savefig(save_path, bbox_inches='tight', dpi=600)
+    matplotlib.pyplot.savefig(save_path, bbox_inches='tight', dpi=1200)
 
 
 def _read_valid_part_of_annotated_image(experiment_path, orig_name):
@@ -234,7 +234,7 @@ def _save_color_legend(num_classes, path):
     matplotlib.pyplot.imshow(image, interpolation='nearest')
     matplotlib.pyplot.grid('off')
     matplotlib.pyplot.axis('off')
-    matplotlib.pyplot.savefig(path, bbox_inches='tight')
+    matplotlib.pyplot.savefig(path, bbox_inches='tight', dpi=1200)
     matplotlib.pyplot.close()
 
 
@@ -414,7 +414,7 @@ def save_summary_montages(probabilities,
         def savefig(path):
             """Saves figure and logs the path."""
             matplotlib.pyplot.subplots_adjust(hspace=0.01, wspace=0.01)
-            matplotlib.pyplot.savefig(path, bbox_inches='tight')
+            matplotlib.pyplot.savefig(path, bbox_inches='tight', dpi=1200)
             matplotlib.pyplot.close()
             f.write('%s\n\n' % path)
 

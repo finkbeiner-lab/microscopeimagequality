@@ -565,7 +565,7 @@ def get_confusion_matrix(predicted_probabilities,
     matplotlib.pyplot.xlabel('predicted class')
     matplotlib.pyplot.ylabel('actual class')
     matplotlib.pyplot.title(plot_title)
-    matplotlib.pyplot.savefig(open(filename, 'w'), bbox_inches='tight')
+    matplotlib.pyplot.savefig(open(filename, 'w'), bbox_inches='tight', dpi = 1200)
     print('Saved confusion matrix at %s' % filename)
     return confusion
 
@@ -813,4 +813,4 @@ def save_prediction_histogram(predictions, save_path, num_classes, log=False):
     matplotlib.pyplot.ylabel('image count')
     matplotlib.pyplot.xlabel('predicted class')
     matplotlib.pyplot.grid('off')
-    matplotlib.pyplot.savefig(save_path, bbox_inches='tight')
+    matplotlib.pyplot.savefig(save_path, bbox_inches='tight', dpi=1200)
