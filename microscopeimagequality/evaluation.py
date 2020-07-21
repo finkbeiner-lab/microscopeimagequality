@@ -759,7 +759,7 @@ def save_result_plots(aggregate_probabilities,
         get_confusion_matrix(
             aggregate_probabilities,
             aggregate_labels,
-            os.path.join(output_directory, 'miq_confusion_matrix.png'),
+            os.path.join(output_directory, 'miq_confusion_matrix.tif'),
             'confusion matrix',
             use_predictions_instead_of_probabilities=True)
 
@@ -767,20 +767,20 @@ def save_result_plots(aggregate_probabilities,
             get_confusion_matrix(
                 patch_probabilities,
                 patch_labels,
-                os.path.join(output_directory, 'miq_confusion_matrix_patch.png'),
+                os.path.join(output_directory, 'miq_confusion_matrix_patch.tif'),
                 'patch confusion matrix',
                 use_predictions_instead_of_probabilities=True)
             get_confusion_matrix(
                 patch_probabilities,
                 patch_labels,
                 os.path.join(output_directory,
-                             'miq_confusion_matrix_patch_probabilities.png'),
+                             'miq_confusion_matrix_patch_probabilities.tif'),
                 'patch confusion matrix (probabilities)',
                 use_predictions_instead_of_probabilities=False)
     else:
         save_prediction_histogram(
             aggregate_predictions,
-            os.path.join(output_directory, 'miq_histogram.png'),
+            os.path.join(output_directory, 'miq_histogram.tif'),
             num_classes=aggregate_probabilities.shape[1])
 
 
