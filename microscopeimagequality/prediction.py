@@ -258,9 +258,9 @@ def save_masks_and_annotated_visualization(orig_name,
 
         skimage.io.imsave(image_output_path, im_padded, dpi = (1200, 1200))
 
-    orig_name_png = os.path.splitext(os.path.basename(orig_name))[0] + '.png'
+    orig_name_tif = os.path.splitext(os.path.basename(orig_name))[0] + '.tif'
     visualized_image_name = ('actual%g_pred%g_mean_certainty=%0.3f' +
-                             (microscopeimagequality.constants.ORIG_IMAGE_FORMAT % orig_name_png))
+                             (microscopeimagequality.constants.ORIG_IMAGE_FORMAT % orig_name_tif))
     output_path = (os.path.join(output_directory, visualized_image_name) %
                    (np_labels[0], prediction, certainties['mean']))
 
@@ -284,7 +284,7 @@ def save_masks_and_annotated_visualization(orig_name,
         values = values.astype(numpy.uint16)
         reshaped_values = values.reshape((image_height // patch_width, image_width // patch_width))
         mask = patch_values_to_mask(reshaped_values, patch_width)
-        pad_and_save_image(mask, os.path.join(output_directory, mask_format % orig_name_png))
+        pad_and_save_image(mask, os.path.join(output_directory, mask_format % orig_name_tif))
 
     # Create, pad and save masks.
     certainties = microscopeimagequality.evaluation.certainties_from_probabilities(np_probabilities)
@@ -357,7 +357,7 @@ def run_model_inference( model_ckpt_file, probabilities, labels, images,
             (prediction, certainties, probabilities_i) = microscopeimagequality.evaluation.aggregate_prediction_from_probabilities(np_probabilities, aggregation_method)
 
             # Each name must be unique since all workers write to same directory.
-            orig_name = np_image_paths[0][0] if np_image_paths[0][0] else ('not_available_%03d_%07d.png' % shard_num, i)
+            orig_name = np_image_paths[0][0] if np_image_paths[0][0] else ('not_available_%03d_%07d.tif' % shard_num, i)
 
             save_masks_and_annotated_visualization(orig_name, output_directory, prediction, certainties, np_images, np_probabilities, np_labels, patch_width, image_height, image_width, show_plots)
 

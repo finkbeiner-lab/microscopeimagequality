@@ -39,10 +39,10 @@ def check_image_count_matches(experiment_path, num_images_expected):
     num_images_expected: Integer, number of expected images.
   """
     filenames = os.listdir(experiment_path)
-    filenames_png = [f for f in filenames if '.png' in f and 'actual' in f]
-    logging.info('num expected: %g, num png files: %g', num_images_expected,
-                 len(filenames_png))
-    assert num_images_expected == len(filenames_png)
+    filenames_tif = [f for f in filenames if '.tif' in f and 'actual' in f]
+    logging.info('num expected: %g, num tif files: %g', num_images_expected,
+                 len(filenames_tif))
+    assert num_images_expected == len(filenames_tif)
 
 
 def _plot_histogram(values, xlabel, ylabel, save_path, bins=10):
@@ -186,7 +186,7 @@ def _read_valid_part_of_annotated_image(experiment_path, orig_name):
     # Find the annotated image file. There is exactly one.
     for index, name in enumerate(all_files):
         # Exclude all masks from search.
-        if (microscopeimagequality.constants.ORIG_IMAGE_FORMAT + '.png') % orig_name in name:
+        if (microscopeimagequality.constants.ORIG_IMAGE_FORMAT + '.tif') % orig_name in name:
             filename_index = index
     if filename_index is None:
         raise ValueError('File %s not found' % orig_name)
@@ -194,7 +194,7 @@ def _read_valid_part_of_annotated_image(experiment_path, orig_name):
 
     image = skimage.io.imread(os.path.join(experiment_path, annotated_filename))
 
-    mask_path = os.path.join(experiment_path, microscopeimagequality.constants.VALID_MASK_FORMAT % orig_name + '.png')
+    mask_path = os.path.join(experiment_path, microscopeimagequality.constants.VALID_MASK_FORMAT % orig_name + '.tif')
 
     # if not os.path.isdir(mask_path):
     #     logging.info('No mask found at %s', mask_path)
@@ -274,24 +274,24 @@ def save_histograms_scatter_plots_and_csv(probabilities,
     predictions = numpy.array(predictions)
     num_classes = probabilities.shape[1]
 
-    _save_color_legend(num_classes, os.path.join(output_path, 'color_legend.png'))
+    _save_color_legend(num_classes, os.path.join(output_path, 'color_legend.tif'))
 
     plot_certainties(certainties, predictions, num_classes,
                      os.path.join(output_path_all_plots,
-                                  'certainty_scatter_plot_all_certainties.png'))
+                                  'certainty_scatter_plot_all_certainties.tif'))
 
     certainties_subset = {k: certainties[k] for k in ['mean', 'aggregate']}
     plot_certainties(certainties_subset, predictions, num_classes,
-                     os.path.join(output_path, 'certainty_scatter_plot.png'))
+                     os.path.join(output_path, 'certainty_scatter_plot.tif'))
 
     # Generate and save histograms for predictions and certainties.
 
     microscopeimagequality.evaluation.save_prediction_histogram(
         predictions,
-        os.path.join(output_path, 'histogram_predictions.jpg'), num_classes)
+        os.path.join(output_path, 'histogram_predictions.tif'), num_classes)
     microscopeimagequality.evaluation.save_prediction_histogram(
         predictions,
-        os.path.join(output_path, 'histogram_predictions_log.jpg'),
+        os.path.join(output_path, 'histogram_predictions_log.tif'),
         num_classes,
         log=True)
 
@@ -302,7 +302,7 @@ def save_histograms_scatter_plots_and_csv(probabilities,
             path = output_path_all_plots
         _plot_histogram(certainties[kind], '%s prediction certainty' % kind,
                         'image count',
-                        os.path.join(path, 'histogram_%s_certainty.jpg' % kind))
+                        os.path.join(path, 'histogram_%s_certainty.tif' % kind))
 
     logging.info('Done summarizing results')
 
@@ -439,7 +439,7 @@ def save_summary_montages(probabilities,
                 for j in range(num_plots_in_row):
                     subplot(num_classes, num_per_class, 1 + i * num_per_class + j)
                     plot_image(class_indices[j], certainties[class_indices[j]])
-            savefig(os.path.join(output_path_all_plots, 'rank_%s.jpg' % rank_method))
+            savefig(os.path.join(output_path_all_plots, 'rank_%s.tif' % rank_method))
 
         def montage_by_class_bin(rank_method, certainties, bins_per_class=10):
             """Montage one image per certainty bin for each class."""
@@ -462,7 +462,7 @@ def save_summary_montages(probabilities,
                 path = output_path
             else:
                 path = output_path_all_plots
-            savefig(os.path.join(path, 'bin_%s.jpg' % rank_method))
+            savefig(os.path.join(path, 'bin_%s.tif' % rank_method))
 
         def montage_by_certainty(certainties, kind):
             montage_by_class_bin('%s_certainty_least_to_most' % kind, certainties)
@@ -478,7 +478,7 @@ def save_summary_montages(probabilities,
                     if i * num_subplots + j < len(sorted_indices):
                         subplot(num_subplots, num_subplots, 1 + i * num_subplots + j)
                         plot_image(sorted_indices[i * num_subplots + j])
-            savefig(os.path.join(output_path_all_plots, '%s.jpg' % name))
+            savefig(os.path.join(output_path_all_plots, '%s.tif' % name))
 
         def plot_most_least_certain(certainties, kind):
             indices = numpy.argsort(certainties)
