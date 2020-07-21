@@ -60,7 +60,7 @@ def _plot_histogram(values, xlabel, ylabel, save_path, bins=10):
   """
     if numpy.min(values) < 0.0 or numpy.max(values) > 1.0:
         raise ValueError('Input values out of range.')
-    matplotlib.pyplot.figure(dpi=600)
+    matplotlib.pyplot.figure(dpi=400)
     _, _, patches = matplotlib.pyplot.hist(values, bins=bins, range=(0.0, 1.0), color='gray')
 
     alpha_index = numpy.array(range(1, bins)).astype(numpy.float32) / (bins - 1)
@@ -148,7 +148,7 @@ def plot_certainties(certainties, predictions, num_classes, save_path):
     keys = sorted(certainties.keys())
     num_keys = len(keys)
     fig_width = int(2.5 * len(certainties.keys()))
-    matplotlib.pyplot.figure(figsize=(fig_width, fig_width), dpi=600)
+    matplotlib.pyplot.figure(figsize=(fig_width, fig_width), dpi=400)
     for i, k1 in enumerate(keys):
         for j, k2 in enumerate(keys):
             if i > j:
@@ -161,7 +161,7 @@ def plot_certainties(certainties, predictions, num_classes, save_path):
                      numpy.min(certainties[k1]),
                      numpy.mean(certainties[k1]), numpy.max(certainties[k1]))
     matplotlib.pyplot.subplots_adjust(hspace=0.05, wspace=0.05)
-    matplotlib.pyplot.savefig(save_path, bbox_inches='tight', dpi=600)
+    matplotlib.pyplot.savefig(save_path, bbox_inches='tight', dpi=400)
 
 
 def _read_valid_part_of_annotated_image(experiment_path, orig_name):
@@ -230,11 +230,11 @@ def _save_color_legend(num_classes, path):
     image = microscopeimagequality.evaluation.get_rgb_image(1.0, patches, probabilities, labels,
                                      image_shape)
     image = image[microscopeimagequality.evaluation.BORDER_SIZE:microscopeimagequality.evaluation.BORDER_SIZE + patch_width, :]
-    matplotlib.pyplot.figure(dpi = 600)
+    matplotlib.pyplot.figure(dpi=400)
     matplotlib.pyplot.imshow(image, interpolation='nearest')
     matplotlib.pyplot.grid('off')
     matplotlib.pyplot.axis('off')
-    matplotlib.pyplot.savefig(path, bbox_inches='tight', dpi=600)
+    matplotlib.pyplot.savefig(path, bbox_inches='tight', dpi=400)
     matplotlib.pyplot.close()
 
 
@@ -414,13 +414,13 @@ def save_summary_montages(probabilities,
         def savefig(path):
             """Saves figure and logs the path."""
             matplotlib.pyplot.subplots_adjust(hspace=0.01, wspace=0.01)
-            matplotlib.pyplot.savefig(path, bbox_inches='tight', dpi=600)
+            matplotlib.pyplot.savefig(path, bbox_inches='tight', dpi=400)
             matplotlib.pyplot.close()
             f.write('%s\n\n' % path)
 
         def setup_new_montage_figure(nrows, ncols):
             """New figure with blank subplot at corners to fix figure shape."""
-            matplotlib.pyplot.figure(figsize=(_FIG_WIDTH, _FIG_WIDTH), dpi=600)
+            matplotlib.pyplot.figure(figsize=(_FIG_WIDTH, _FIG_WIDTH), dpi=400)
             matplotlib.pyplot.subplot(nrows, ncols, 1)
             matplotlib.pyplot.axis('off')
             matplotlib.pyplot.subplot(nrows, ncols, nrows * ncols)
